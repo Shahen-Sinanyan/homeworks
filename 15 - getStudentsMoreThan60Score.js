@@ -69,9 +69,17 @@ const evaluations = [
    ];
    function getStudentsMoreThan60Score (evaluations) {
        let result = [];
+        let checkArray = [];
+        root:
        for (let i = 0; i < evaluations.length; i++) {
+           for (let j = 0; j < checkArray.length; j++) {
+               if (evaluations[i].studentId === checkArray[j]) {
+                   continue root;
+               }
+           }
            if (evaluations[i].score > 60) {
-               result.push(evaluations[i]);
+               result.push(evaluations[i].studentName);
+               checkArray.push(evaluations[i].studentId);
            }
        }
        return result;
